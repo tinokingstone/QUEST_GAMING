@@ -1,0 +1,17 @@
+/home/stef/QAProject3/petclinic/spring-petclinic-rest/src/test/java/org/springframework/samples/petclinic/service/userService/UserServiceJdbcTests.java
+/home/stef/QAProject3/petclinic/spring-petclinic-rest/src/test/java/org/springframework/samples/petclinic/rest/UserRestControllerTests.java
+/home/stef/QAProject3/petclinic/spring-petclinic-rest/src/test/java/org/springframework/samples/petclinic/service/clinicService/ClinicServiceSpringDataJpaTests.java
+/home/stef/QAProject3/petclinic/spring-petclinic-rest/src/test/java/org/springframework/samples/petclinic/service/clinicService/ClinicServiceJpaTests.java
+/home/stef/QAProject3/petclinic/spring-petclinic-rest/src/test/java/org/springframework/samples/petclinic/service/clinicService/ApplicationTestConfig.java
+/home/stef/QAProject3/petclinic/spring-petclinic-rest/src/test/java/org/springframework/samples/petclinic/service/clinicService/AbstractClinicServiceTests.java
+/home/stef/QAProject3/petclinic/spring-petclinic-rest/src/test/java/org/springframework/samples/petclinic/rest/VisitRestControllerTests.java
+/home/stef/QAProject3/petclinic/spring-petclinic-rest/src/test/java/org/springframework/samples/petclinic/rest/VetRestControllerTests.java
+/home/stef/QAProject3/petclinic/spring-petclinic-rest/src/test/java/org/springframework/samples/petclinic/rest/PetTypeRestControllerTests.java
+/home/stef/QAProject3/petclinic/spring-petclinic-rest/src/test/java/org/springframework/samples/petclinic/rest/SpecialtyRestControllerTests.java
+/home/stef/QAProject3/petclinic/spring-petclinic-rest/src/test/java/org/springframework/samples/petclinic/rest/PetRestControllerTests.java
+/home/stef/QAProject3/petclinic/spring-petclinic-rest/src/test/java/org/springframework/samples/petclinic/rest/OwnerRestControllerTests.java
+/home/stef/QAProject3/petclinic/spring-petclinic-rest/src/test/java/org/springframework/samples/petclinic/service/userService/AbstractUserServiceTests.java
+/home/stef/QAProject3/petclinic/spring-petclinic-rest/src/test/java/org/springframework/samples/petclinic/model/ValidatorTests.java
+/home/stef/QAProject3/petclinic/spring-petclinic-rest/src/test/java/org/springframework/samples/petclinic/service/clinicService/ClinicServiceJdbcTests.java
+/home/stef/QAProject3/petclinic/spring-petclinic-rest/src/test/java/org/springframework/samples/petclinic/service/userService/UserServiceSpringDataJpaTests.java
+/home/stef/QAProject3/petclinic/spring-petclinic-rest/src/test/java/org/springframework/samples/petclinic/service/userService/UserServiceJpaTests.java

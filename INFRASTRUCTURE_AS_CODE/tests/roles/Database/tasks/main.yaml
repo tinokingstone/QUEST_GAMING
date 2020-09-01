@@ -1,0 +1,23 @@
+  - name: docker service
+    service:
+      name: docker
+      state: started
+  - name: insecure registry create Dir
+    file:
+      path: /etc/docker/
+      state: directory
+      mode: "0700"
+
+  - name: launch db container
+    docker_container:
+      name: survive_db
+      image: tinokingstone/survive_db:v1
+      ports:
+       - "3306:3306"
+       - "127.0.0.1:8080:8080/udp" 
+         #detach: no
+      volumes:
+        - survivedb:/data
+          #become: yes  
+
+    #/home/jenkins/.shh/id_rsa.pub

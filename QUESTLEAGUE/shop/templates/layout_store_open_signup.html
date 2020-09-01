@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{{url_for('static', filename='css/bootstrap.min.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='main.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='profile.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='post grid.css') }}">
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='hdrtop.css') }}">
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='signupfrm.css') }}">
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='right_hand_pannell.css') }}">
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='match_making.css') }}">
+
+	{% if title %}
+		<title>Quest-gaming.com - {{ title }} </title>
+	{% else %}
+		<title>Quest-gaming.com</title>
+    {% endif %}
+    
+</head>
+
+<div id="overlay" >
+	<!-- //////////////////// LEFT  MENU BTN /////////////////////// -->
+    <div id="menubar">
+		<div class="burger_icon" onclick="myFunction(this)">
+			<style>
+			.container {
+			  display: inline-block;
+			  cursor: pointer;
+			}
+			
+			.bar1, .bar2, .bar3 {
+			  width: 25px;
+			  height: 2px;
+			  background-color: #333;
+			  margin: 6px 0;
+			  transition: 0.4s;
+			  border-radius:5px
+			}
+			
+			.change .bar1 {
+			  -webkit-transform: rotate(-45deg) translate(-9px, 6px);
+			  transform: rotate(-45deg) translate(-9px, 6px);
+			}
+			
+			.change .bar2 {opacity: 0;}
+			
+			.change .bar3 {
+			  -webkit-transform: rotate(45deg) translate(-8px, -8px);
+			  transform: rotate(45deg) translate(-8px, -8px);
+			}
+			</style>
+			</head>
+			
+			<div class="container" id="left_burger" onclick="myFunction(this)">
+			  <div class="bar1"></div>
+			  <div class="bar2"></div>
+			  <div class="bar3"></div>
+			</div>
+			
+			<script>
+
+				
+			function myFunction(x) {
+			  x.classList.toggle("change");
+			}
+			</script>
+	</div>		
+<!-- ////////////////// LEFT HAND SIDE MENU ////////////////////// -->
+
+<div id="left_menu">
+	<div class="menu_options">
+		{% if current_user.is_authenticated %}
+		<div id="left_menu_prof">
+			<div class="segment_titles_side_menu">
+				<a href="{{url_for('my_account')}}" class="">
+				<div class="menu_icon"><img src="{{url_for('static', filename='icons/profile.png' )}}" class="itm_img"></div>
+				</a> 	
+			</div>
+		</div>
+		{% endif %}
+
+			<div class="segment_titles_side_menu">
+				<a href="{{url_for('welcome')}}" class="">
+				<div class="menu_icon"><img src="{{url_for('static', filename='icons/home.png' )}}" class="itm_img"></div>
+				</a> 	
+			</div>
+
+			<div class="segment_titles_side_menu">
+				<a href="{{url_for('ourgames')}}" class="">
+				<div class="menu_icon"><img src="{{url_for('static', filename='icons/joystick.png' )}}" class="itm_img"></div>
+				</a> 	
+			</div>
+
+			<div class="segment_titles_side_menu">
+				<a href="{{url_for('landing')}}" class="">
+				<div class="menu_icon"><img src="{{url_for('static', filename='icons/tournaments.png' )}}" class="itm_img"></div>
+				</a> 	
+			</div>
+
+			<div class="segment_titles_side_menu">
+				<a href="{{url_for('rules')}}" class="">
+					<div class="menu_icon"><img src="{{url_for('static', filename='icons/rules.png' )}}" class="itm_img"></div>
+				</a> 
+			</div>
+
+			<div class="segment_titles_side_menu">
+				<a href="{{url_for('about')}}" class="">
+					<div class="menu_icon"><img src="{{url_for('static', filename='icons/aboutus.png' )}}" class="itm_img"></div>
+				</a> 
+			</div>
+	</div>
+</div>
+
+
+		<!-- <div class="menu_logo">	
+			<a href="{{url_for('landing')}}" class="segment_titles_logo">// QUEST GAMING \\</a> 
+		</div> -->
+
+
+
+
+
+		<div id="profile_icon_cont" >
+		
+            <div id="profile_icon_cont">
+			{% if current_user.is_authenticated %}
+				<div class="segment_titles_btn">MY ACCOUNT</div>
+				{% else %}
+				<a href="{{url_for('customerLogin')}}" class="">
+					<div class="segment_titles_login_btn">LOGIN</div>
+				</a>
+				{% endif %}
+			</div>
+
+
+
+	
+			</div>
+					<div id="more_info">
+
+						<div id="item_view_bg">
+						</div>
+<!-- ////////////////// SIGN UP + LOGIN FORM /////////////////////////-->
+
+		<div id="account_forms">
+
+
+		<!-- ///////////////// LOGIN FORM ///////////////////// -->
+		
+		{% if current_user.is_authenticated %}
+		<div class="account_forms_cont">
+			<div class="title_small">MY ACCOUNT</div>
+
+			<div class="acc_menu_option_cont">
+
+				<div class="acc_menu_option" class="">
+					<a href="{{url_for('my_account')}}" class="menu_option_med">MY ACCOUNT</a>
+				</div>
+				<div class="acc_menu_option" class="">
+					<a href="{{url_for('order_history')}}" class="menu_option_med">MY ORDER HISTORY</a>
+				</div>
+				<div class="acc_menu_option" class="">
+					<a href="{{url_for('settings')}}" class="menu_option_med">SETTINGS</a>
+				</div>
+
+			</div>
+
+			<div class="acc_menu_option_btn" class="">
+				<a href="{{url_for('customer_logout')}}" class="checkout_btn">LOGOUT</a>
+			</div>
+		</div>
+
+
+
+
+		{% else %}
+
+
+		{#<!-- <div class="account_forms_cont">
+			 
+							<div id="login_form">
+
+								{% from "_formhelpers.html" import render_field %}
+								{% include '_messages.html' %}
+								<form method=post>
+									{{form.csrf_token}}
+								<div>
+									<div class="title_small">WELCOME BACK</div>
+									<div class="text_medium">Login to your account</div>
+									<div class="">{{ render_field(form.email, class="form-fieldss", placeholder="Email") }}</div>
+									<div class="">{{ render_field(form.password, class="form-fieldss", placeholder="Password") }}</div>
+
+									
+									
+								</div>
+								<input type="submit" value="LOGIN" class="checkout_btn">
+								</form>
+
+								
+								
+								<a href="{{url_for('customer_register')}}" class="">
+									<div class="text_medium">don’t have an account?</div> 
+									<div id="acc_option2" class="acc_option">CREATE AN ACCOUNT</div>
+								 </a> 
+
+
+							</div>
+			</div> -->#}
+			{% endif %}
+
+		</div>
+
+	</div>
+</div>
+</div>
+
+
+	<!-- //////////////////////////   ////////////////////////////// -->
+
+
+	
+	
+	
+	<!-- /////////////////////////////////      //////////////////////// -->
+
+
+				<!-- ////////////ITEM VIEWER/////// -->
+
+						<div id="item_view_cont">
+								
+							{#{% include 'test.html' %}#}
+
+						</div>
+
+					</div>
+
+</div>
+
+</div>
+							
+
+<body>
+		<div class="Super_container">
+			
+
+		{% with messages = get_flashed_messages(with_categories=true) %}
+				{% if messages %}
+					{% for category, message in messages %}
+						<div class="alert alert={{ category }}"></div>
+						{{ message }}
+					{% endfor %}
+				{% endif %}
+		{% endwith %}
+				
+			{% block content %} 
+
+			{% endblock content %}
+
+		</div>
+	<script src="{{url_for('static', filename='js/jquery-3.4.1.slim.min.js')}}" ></script>
+	<script src="{{url_for('static', filename='js/popper.min.js')}}"></script>
+	<script src="{{url_for('static', filename='js/bootstrap.min.js')}}"></script>
+  </body>
+
+ </html>
+
+ <!-- BURGER ICON ANIMATON -->
+ <script>
+	function myFunction(x) {
+	  x.classList.toggle("change");
+	}
+</script>
+
+ <script type="text/javascript">
+
+
+	var menubar_m = document.getElementById("menubar");
+	var more_info_forms = document.getElementById("more_info");
+	var acc_forms = document.getElementById("account_forms");
+	var view_blr_m = document.getElementById("shop_main_cont");	
+	var view_blr_m2 = document.getElementById("shop_main_cont2");	
+
+	
+	var icon_btn_m = document.getElementById("profile_icon_cont");
+	
+			icon_btn_m.onclick = function(){
+	
+				if(acc_forms.className== "open"){
+				menubar_m.className = "";
+				view_blr_m.className = "";
+				more_info_forms.className = "";
+				acc_forms.className = "";
+				view_blr_m2.className  = "";
+	
+				}else{
+				menubar_m.className = "open";
+				view_blr_m.className = "open";
+				more_info_forms.className = "iopen";
+				acc_forms.className = "open";
+				view_blr_m2.className = "open";
+				}
+	
+				};
+	
+	
+	 </script>
+	
+		<!-- /////////////////// LEFT MENU BAR //////////////////////////// -->
+		<script type="text/javascript">
+
+
+			var menubar_mS = document.getElementById("menubar");
+			var more_info_formsS = document.getElementById("more_info");
+			var acc_formsS = document.getElementById("left_menu");
+			var view_blr_mS = document.getElementById("shop_main_cont");	
+			var view_blr_m2S = document.getElementById("shop_main_cont2");	
+		
+			
+			var icon_btn_mS = document.getElementById("left_burger");
+			
+					icon_btn_mS.onclick = function(){
+			
+						if(acc_formsS.className== "open"){
+						menubar_mS.className = "";
+						view_blr_mS.className = "";
+						more_info_formsS.className = "";
+						acc_formsS.className = "";
+						view_blr_m2S.className  = "";
+			
+						}else{
+						menubar_mS.className = "open";
+						view_blr_mS.className = "open";
+						more_info_formsS.className = "iopen";
+						acc_formsS.className = "open";
+						view_blr_m2S.className = "open";
+						}
+			
+						};
+			
+			
+			 </script>
+	
+	<script type="text/javascript">
+	
+		var login_form = document.getElementById("login_form");
+		var register_form = document.getElementById("register_form");
+		var acc_option = document.getElementById("acc_option");
+				acc_option.onclick = function(){
+					if(register_form.className== "open"){
+					register_form.className = "";
+					login_form.className = "";
+	
+					}else{
+					register_form.className = "open";
+					login_form.className = "open";
+	
+					}
+		
+					};
+		 </script>
+	<script type="text/javascript">
+		var step1 = document.getElementById("step1");
+		var step2 = document.getElementById("step2");
+		var next_btn = document.getElementById("next_btn");
+				next_btn.onclick = function(){
+					if(step1.className== "open"){
+					step2.className = "open";
+					step1.className = "";
+	
+					}else{
+					step2.className = "open";
+					step1.className = "open";
+	
+					}
+		
+					};
+		 </script>
+	
+	<script type="text/javascript">
+		var step1_12 = document.getElementById("step1");
+		var step2_12 = document.getElementById("step2");
+		var bk_btn = document.getElementById("bk_btn");
+				bk_btn.onclick = function(){
+					if(step2_12.className== "open"){
+					step2_12.className = "";
+					step1_12.className = "open";
+	
+					}else{
+					step2_12.className = "";
+					step1_12.className = "";
+	
+					}
+		
+					};
+		 </script>
+	
+	
+	
+	<script type="text/javascript">
+	
+		var login_form2 = document.getElementById("login_form");
+		var register_form2 = document.getElementById("register_form");
+		var acc_option2 = document.getElementById("acc_option2");
+	
+				acc_option2.onclick = function(){
+					if(register_form2.className== "open"){
+					register_form2.className = "";
+					login_form2.className = "";
+	
+					}else{
+					register_form2.className = "open";
+					login_form.className = "open";
+	
+					}
+		
+					};
+		 </script>
+	
+	<!-- SEARCH BTN  -->
+	<script type="text/javascript">
+	
+		var menubar_s = document.getElementById("menubar");	
+		var itm_content_s = document.getElementById("more_info");	
+		var view_blr_s = document.getElementById("shop_main_cont");
+	
+	
+		var search_bar_cont = document.getElementById("search_bar_cont");
+		var search_icon = document.getElementById("search_icon");
+	
+				search_icon.onclick = function(){
+					if(search_bar_cont.className== "open"){
+					search_bar_cont.className = "";
+					view_blr_s.className = "";
+					itm_view_cont_s.className = "";
+					itm_content_s.className = "";
+					menubar_s.className = "";
+	
+	
+	
+	
+					}else{
+					search_bar_cont.className = "open";
+					view_blr_s.className = "open";
+					menubar_s.className = "open";
+					itm_view_cont_s.className = "open";
+					itm_content_s.className = "iopen";
+	
+					}
+					};
+		 </script>
+	
+	
+	<script>
+		var adv_dual_split = document.getElementById("#shop_top");
+		var adv_dual_split = document.getElementById("adv_dual_split");
+		var our_products = document.getElementById("our_products");
+		var acc_option2 = document.getElementById("menubar");
+		window.onscroll = function() {scrollFunction()};
+		
+		function scrollFunction() {
+		  if (document.body.scrollTop > 80 || document.documentElement.scrollTop > 80) {
+			menubar_s.className = "open";
+	
+		  } else {
+			menubar_s.className = "";
+		  }
+	
+	
+	
+		//   ADVERT 1 TRANSFORM 
+	
+		  if (document.body.scrollTop > 500 || document.documentElement.scrollTop > 500) {
+			our_products.className = "open";
+	
+		  } else {
+			our_products.className = "";
+		  }
+		//   DUAL OPTION TRANSFORM 
+	
+		if (document.body.scrollTop > 500 || document.documentElement.scrollTop > 500) {
+			adv_dual_split.className = "open";
+	
+		  } else {
+			adv_dual_split.className = "";
+		  }
+	
+		  
+		}
+		</script>
+
+
+		<script type="text/javascript">
+
+			var content = document.getElementById("checkOut");
+			var content2 = document.getElementById("item_section");
+
+			var button = document.getElementById("checkOut");
+						button.onclick = function(){
+						if(content.className== "open"){
+						content.className = "" ;
+						content2.className = "" ;
+
+						}else{
+						content.className = "open";
+						content2.className = "open" ;
+						}
+
+						};
+		</script>
+

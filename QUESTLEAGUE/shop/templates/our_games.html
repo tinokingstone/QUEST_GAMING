@@ -1,0 +1,113 @@
+{% extends "layout_store.html" %}
+{% block content %}
+<head>
+   
+</head>
+
+<div id="shop_main_cont">
+
+
+<!-- /////////////// OUR TOURNAMENTS, CLICK TO VIEW ALL TOURNAMENTS ////////////////// -->
+
+<div id="landing_section_3" class="landing_section_3">
+
+  <div class="our_games_cont">
+
+  <div id="landing_section_2" class="landing_section_2">
+    <div class="our_games_cont">
+      <a href="{{url_for('getCart')}}" class="">
+        <div class="adv_dual_split">
+          <img src="{{url_for('static', filename='banners/fortnite-cover.jpg' )}}" alt="{{product.name}}" class="itm_img">
+        </div>
+      </a>
+
+      <a href="{{url_for('getCart')}}" class="">
+        <div class="adv_dual_split">
+          <img src="{{url_for('static', filename='banners/fifa-cover.jpg' )}}" alt="{{product.name}}" class="itm_img">
+        </div>
+      </a>
+
+      <a href="{{url_for('getCart')}}" class="">
+        <div class="adv_dual_split">
+          <img src="{{url_for('static', filename='banners/cod-cover.jpg' )}}" alt="{{product.name}}" class="itm_img">
+        </div>
+      </a>
+
+
+      
+    </div>
+  </div>
+
+
+
+
+  </div>
+</div>
+
+
+
+
+
+<div id="footer" class="footer">
+  <div class="footer_cont">
+
+      <div class="footer_div">
+        <div class="footer_title">WANT MORE ?</div>
+        <div class="footer_link">Size Guide</div>
+        <div class="footer_link">Delivery and Returns</div>
+        <div class="footer_link">About Us</div>
+        <div class="footer_link">Privacy policy</div>
+        <div class="footer_link">Terms od Service</div>
+
+        <div class="footer_link">2020 Shapit UK</div>
+      </div>
+
+      <div class="footer_div">
+        <div class="footer_title">WHY USE A WAIST TRAINER ?</div>
+        <div class="footer_link">How To Use a Waist Trainer</div>
+        <div class="footer_link">Garment Care</div>
+        <div class="footer_link">Size Guide</div>
+        <div class="footer_link">Beginners Guide to Waist Training</div>
+
+      </div>
+
+      <div class="footer_div">
+        <div class="footer_title">SHAPE IT UK</div>
+        <div class="footer_link">Adress line</div>
+        <div class="footer_link">Adress line</div>
+        <div class="footer_link">Adress line</div>
+        <div class="footer_link">Adress line</div>
+      </div>
+
+      <div class="footer_div">
+        <div class="footer_title">SOCIAL MEDIA LINKS</div>
+        <div class="footer_link">Facebook</div>
+        <div class="footer_link">instagram</div>
+        <div class="footer_link">Twitter</div>
+        <div class="footer_link">Snapchat</div>
+      </div>
+    </div>
+
+    <!-- payment methods  -->
+
+
+  </div>
+ 
+  <div class="payment_system">
+    
+    <div class="footer_div_payment">
+        <div class="footer_title2">PAYMENT METHODS</div>
+        <div class="footer_icon">      <img src="{{url_for('static', filename='icons/icons8-paypal-480.png' )}}" alt="{{product.name}}" class="itm_img"></div>
+        <div class="footer_icon">      <img src="{{url_for('static', filename='icons/icons8-mastercard-480.png' )}}" alt="{{product.name}}" class="itm_img"></div>
+        <div class="footer_icon">      <img src="{{url_for('static', filename='icons/icons8-visa-480.png' )}}" alt="{{product.name}}" class="itm_img"></div>
+        <div class="footer_icon">      <img src="{{url_for('static', filename='icons/icons8-american-express-480.png' )}}" alt="{{product.name}}" class="itm_img"></div>
+    </div>
+
+</div>
+
+</div>
+
+{% endblock content %}
+
+
+

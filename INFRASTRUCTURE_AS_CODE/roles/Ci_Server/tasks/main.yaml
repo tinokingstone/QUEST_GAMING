@@ -1,0 +1,94 @@
+
+  - name: prerequisites
+    apt:
+      pkg:
+      - apt-transport-https
+      - ca-certificates
+      - curl
+      - gnupg2
+      - software-properties-common
+      - python3-pip
+      - python-pip
+      - git
+      state: latest
+      update_cache: true
+  - name: docker
+    pip:
+      name: docker
+  - name: json
+    pip:
+      name: jsondiff
+  - name: requests
+    pip:
+      name: requests
+  - name: yaml
+    pip:
+      name: pyyaml
+  - name: compose
+    pip:
+      name: docker-compose
+  - name: docker gpg key
+    apt_key:
+      url: "https://download.docker.com/linux/debian/gpg"
+      state: present
+  - name: docker apt repo
+    apt_repository:
+      repo: "deb [arch=amd64] https://download.docker.com/linux/debian stretch stable"
+      state: present
+  - name: docker install
+    apt:
+      pkg:
+      - docker-ce
+      - docker-ce-cli
+      - containerd.io
+      state: latest
+      update_cache: true
+  - name: docker service
+    service:
+      name: docker
+      state: started
+  - name: insecure registry create Dir
+    file:
+      path: /etc/docker/
+      state: directory
+      mode: "0700"
+
+  - name: Pull default Docker image
+    docker_image:
+      name: jenkins
+      source: pull
+
+  - openssh_keypair:
+      path: /home/jenkins/.ssh/id_rsa
+      owner: jenkins
+      group: jenkins
+      mode: u=rw,g=,o=     
+      #mode: "7777"
+
+  - name: launch jenkins container
+    docker_container:
+      name: jenkins
+      image: jenkins/jenkins:latest
+      ports:
+       - "8080:8080"
+       - "127.0.0.1:8080:8080/udp" 
+         #detach: no
+      volumes:
+        - jenkins:/data
+          #become: yes   
+
+  - name: Copy public key 
+    copy: src=/home/jenkins/.ssh/id_rsa.pub dest=/tmp/id_rsa.pub remote_src=yes directory_mode=yes
+
+  - name: copy private key
+    copy: src=/home/jenkins/.ssh/id_rsa dest=/tmp/id_rsa remote_src=yes directory_mode=yes
+
+  - name: Copy in the template
+    command: docker cp /tmp/id_rsa.pub jenkins:/var/jenkins_home/id_rsa.pub
+    become: yes
+
+  - name: Copy in the template
+    command: docker cp /tmp/id_rsa jenkins:/var/jenkins_home/id_rsa
+    become: yes
+
+    #/home/jenkins/.shh/id_rsa.pub

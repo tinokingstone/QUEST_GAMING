@@ -1,0 +1,140 @@
+{% extends 'layout.html' %}
+{% block content %}
+{% include 'navbar.html' %}
+
+<div class="container mt-4">
+    {% include '_messages.html' %}
+    <div class="row">
+        <div class="col-md-12">
+            Inoice: {{orders.invoice}}
+            <br>
+            Status: {{orders.status}}
+            <br>
+            Customer name: {{customer.name}}
+            <br>
+            Customer email: {{customer.email}}
+            <br>
+            Customer contact: {{customer.contact}}
+            <br>
+            <br>
+        <table class="table table-sm">
+            <thead>
+                <th>Sr</th>
+                <th>Name</th>
+                <th>Color</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Discount</th>
+                <th>Subtotal</th>
+            </thead>
+            <tbody>
+                {% for key, product in orders.orders.items() %}
+                {% set discount =(product.discount/100) * product.price|float %}
+                <tr>
+                    <td>{{loop.index}}</td>
+                    <td>{{product.name}}</td>
+                    <form action="{{url_for('updatecart', code=key)}}" method="post">
+                    <td> 
+                        {{product.color|capitalize}}
+                    </td>
+                    <td>£{{"%.2f"|format(product.price)}}</td>
+                    <td> {{product.quantity}} </td>
+                    <td> {{product.id}} </td>
+                    {% if product.discount  %}
+                    <td>{{product.discount}} % &nbsp; &nbsp; is {{"%.2f"|format(discount)}}</td>
+                    {% else %}
+                    <td></td>
+                    {% endif %}
+                    {% set subtotal = product.quantity|int * product.price|float  %}
+                    <td>£{{"%.2f"|format(subtotal - discount|round(1,'floor')) }}</td>
+                </form>        
+            </tr>
+
+
+            <div>
+                testing
+                {{product.T_Title}}
+            </div>
+
+                {% endfor %}
+            </tbody>
+        </table>
+        <table class="table table-sm">
+           <tr>
+               <td>   
+                   {% if orders.status =='Paid' %}
+                   {% else %}
+                <form action="{{url_for('payment')}}" method="POST">
+                {% set amount =  grandTotal.replace('.','') %}
+
+                
+ 
+                
+                <input type="hidden" name="amount" value="{{amount}}">
+
+                <input type="hidden" name="invoice" value="{{orders.invoice}}">
+
+                    {% for key, product in orders.orders.items() %}
+                        <input type="hidden" name="T_Title" value="{{product.T_Title}}">
+                    {% endfor %}
+
+
+                <script src="https://checkout.stripe.com/checkout.js"
+                  class="stripe-button"
+                  data-key="pk_test_51H5WRmCdlu629vZwtLwbPk7Q86Gj9xWmlXTfYgsLyrMwxvn0c0vbk1acu6SUQ4xZW3TJCidRjg9e1nTzVGXSLy4L00RwfjQbOx"
+                  data-name="QUEST-GAMING"
+                  data-description="CHECKOUT"
+                  data-amount="{{amount}}"
+                  data-currency="gbp">
+                </script>
+              </form> 
+              {% endif %}
+            </td>
+
+               <td width="35%"></td>
+               <td> <h5>Tax: £{{tax}}</h5></td>
+               <td> <h5>Grand total: £{{grandTotal}}</h3> </td>
+               
+                <td> 
+                    <form action="{{url_for('get_pdf', invoice=orders.invoice)}}" method="post">
+                        <button type="submit" class="btn btn-info"> Get pdf</button>
+                    </form>
+                     </td>
+           </tr>
+        </table>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+			<input type="hidden" name="cmd" value="_xclick">
+			<input type="hidden" name="business" value="alimizan@hotmail.com">
+			<input type="hidden" name="lc" value="GBP">
+			<input type="hidden" name="item_name" value="ShapeIT Clothing UK">
+			<input type="hidden" name="item_number" value="1966#204">
+			<input type="hidden" name="amount" value="{{grandtotal}}">
+			<input type="hidden" name="currency_code" value="GBP">
+			<input type="hidden" name="button_subtype" value="services">
+			<input type="hidden" name="no_note" value="0">
+			<input type="hidden" name="tax_rate" value="0.000">
+			<input type="hidden" name="shipping" value="0.00">
+
+			<!-- Replace value with the web page you want the customer to return to after a successful transaction -->
+			<input type="hidden" name="return" value="http://localhost:5000/my_account">
+
+			<!-- Replace value with the web page you want the customer to return to after item cancellation -->
+			<input type="hidden" name="cancel_return" value="http://localhost:5000/landing">
+
+			<input type="hidden" name="cn" value="Add special instructions to the seller:">
+
+			<input type="hidden" name="bn" value="PP-BuyNowBF:btn_buynowCC_LG.gif:NonHostedGuest">
+			<input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+			<img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+	</form>
+
+
+{% endblock content %}

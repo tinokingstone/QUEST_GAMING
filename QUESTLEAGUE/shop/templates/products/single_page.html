@@ -1,0 +1,728 @@
+{% extends "layout_store_open.html" %}
+{% block content %}
+
+<!DOCTYPE html>
+<html>
+
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='main.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='profile.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='post grid.css') }}">
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script src="parallax.js/parallax.min.js"></script>
+
+<body>
+				<div id="body_cont">
+
+		
+					<div id="shop_main_cont">
+
+
+
+<!-- /////////////// OUR TOURNAMENTS, CLICK TO VIEW ALL TOURNAMENTS ////////////////// -->
+
+<div id="landing_section_5" class="landing_section_5">
+
+	<div id="my_info_cont_prof">
+		<div class="my_info_prof_pic">
+			<img src="{{url_for('static', filename='images/'+product.image_2 )}}" alt="{{product.name}}" style="width: 100%;">
+		</div> 
+  </div>
+
+  <div class="seasons_tab">
+		<div class="stats_cont">
+			<div class="segment_titles_info_title" id="OVERVIEW_BTN"> OVERVIEW </div>
+			<div class="segment_titles_info_title" id="FIXTURES_BTN"> FIXTURES </div>
+			<div class="segment_titles_info_title" id="PRIZES_BTN"> PRIZES </div>
+			<div class="segment_titles_info_title" id="RULES_BTN"> RULES </div>
+		</div>
+	</div>
+  
+
+
+<!-- ///////////////////// MAINN ITEM INFO ////////////////// -->
+<div id="shop_sections">
+
+	<div id="item_section">
+
+				<div class="tv_top">
+					<img src="{{url_for('static', filename='images/'+product.image_1 )}}" alt="{{product.name}}" class="itm_img">
+				</div>
+
+				<div class="item_info_all">
+					<div class="info_top_bar">
+
+						<h4 class="segment_titles_info_title">{{product.gamename}}   |   {{product.Game_Mode}}</h4>
+						
+						<h4 class="segment_titles_info_title_2">{{product.Starting_Date}}   |   {{product.Tournament_Time}}</h4>
+
+
+					</div>
+
+					<div class="itm_section">
+
+					</div>
+
+					<div class="itm_section_info_overlay">
+<!-- ////////////////////////////////// TOURNAMENT OVERVIER /////////////////////////////// -->
+					<div class="tournament_overview_cont" id="tournament_overview_cont">
+
+
+						<div class="segment_titles_12_center">TOURNAMENT OVERVIEW</div>
+						<hr>
+
+						<div class="segment_titles_1_left">PRIZES</div>
+
+						<div class="prize_box">
+							<div class="segment_titles_12_center">1st</div>
+							<div class="segment_titles_1_center_prize">£700</div>
+						</div>
+
+						<div class="prize_box">
+							<div class="segment_titles_12_center">2nd</div>
+							<div class="segment_titles_1_center_prize">£200</div>
+						</div>
+
+						<div class="prize_box">
+							<div class="segment_titles_12_center">3rd</div>
+							<div class="segment_titles_1_center_prize">£100</div>
+						</div>
+
+						<div class="segment_titles_1_left">INFO</div>
+
+						<div class="t_info_box">
+							<div class="segment_titles_12_center">HOW TO JOIN</div>
+						</div>
+
+
+						<div class="t_info_box">
+							<div class="segment_titles_12_center">HOW TO START A GAME </div>
+						</div>
+
+						<div class="t_info_box">
+							<div class="segment_titles_12_center">HOW TO YOUR A PRIZE</div>
+						</div>
+
+					</div>	
+
+<!-- //////////////////////////////////////////// FIXTURES  ////////////////////////////////////////////////////// -->
+					<div class="FIXTURES" id="FIXTURES">
+						<div class="segment_titles_1_center">ENROLED PLAYERS</div>
+						<hr>
+
+
+						<div class="player_tag">
+							<div class="player_tag_img">
+
+							</div>
+							<div class="segment_titles_player_tag">GAMERTAG</div>
+						</div>
+
+
+						{% if product.T_Title  == 'fortnite_battle_royal_solo' %} 
+<!-- ////////////////////////////////////// FORTNITE SOLO ////////////////////////////////// -->
+								{% for i in fortnite_solo.items %} 
+											
+										<div class="player_tag">
+										<div class="player_tag_img">
+								
+										</div>
+										<div class="segment_titles_player_tag">{{i.Gamertag_PC|upper}}</div>
+										<div class="segment_titles_player_tag">{{i.Participant_State|upper}}</div>
+
+										</div>
+						
+								{% endfor %}
+
+							{% elif product.T_Title  == 'fortnite_battle_royal_squads' %}
+<!-- ////////////////////////////////////// FORTNITE SQUADS ////////////////////////////////// -->
+									{% for i in fortnite.items %} 
+													
+										<div class="player_tag">
+										<div class="player_tag_img">
+								
+										</div>
+										<div class="segment_titles_player_tag">{{i.Gamertag_PC|upper}}</div>
+
+
+										</div>
+						
+									{% endfor %}
+							
+							{% elif product.T_Title  == 'fifa_1V1_solo' %}
+<!-- ////////////////////////////////////// FIFA DUO ////////////////////////////////// -->
+									{% for i in fifa_solo.items %} 
+													
+										<div class="player_tag">
+										<div class="player_tag_img">
+								
+										</div>
+										<div class="segment_titles_player_tag">{{i.Gamertag_PC|upper}}</div>
+
+
+										</div>
+						
+									{% endfor %}
+
+						
+							{% elif product.T_Title  == 'fifa_2v2_duos' %}
+
+<!-- ////////////////////////////////////// FIFA DUO ////////////////////////////////// -->
+									{% for i in fifa_squads.items %} 
+																						
+										<div class="player_tag">
+										<div class="player_tag_img">
+																	
+										</div>
+ 										<div class="segment_titles_player_tag">{{i.Gamertag_PC|upper}}</div>
+									
+									
+										</div>
+															
+									{% endfor %}
+
+							{% elif product.T_Title  == 'cod_team_death_match_squads' %}
+
+<!-- ////////////////////////////////////// FIFA DUO ////////////////////////////////// -->
+									{% for i in cod_squads.items %} 
+																															
+										<div class="player_tag">
+										<div class="player_tag_img">
+																	
+										</div>
+										<div class="segment_titles_player_tag">{{i.Gamertag_PC|upper}}</div>
+
+										</div>
+														
+									{% endfor %}						
+
+							{% elif product.T_Title  == 'cod_team_death_match_solo' %}
+
+<!-- ////////////////////////////////////// FIFA DUO ////////////////////////////////// -->
+									{% for i in cod_solo.items %} 
+																															
+										<div class="player_tag">
+										<div class="player_tag_img">
+																	
+										</div>
+										<div class="segment_titles_player_tag">{{i.Gamertag_PC|upper}}</div>
+
+										</div>
+														
+									{% endfor %}
+	
+							{% elif product.T_Title  == 'fortnite_battle_royal_solo_ps5' %}
+
+<!-- ////////////////////////////////////// FIFA DUO ////////////////////////////////// -->
+									{% for i in fortnite_solo.items %} 
+																															
+										<div class="player_tag">
+										<div class="player_tag_img">
+																	
+										</div>
+										<div class="segment_titles_player_tag">{{i.Gamertag_PC|upper}}</div>
+
+										</div>
+														
+									{% endfor %}
+
+	
+							{% elif product.T_Title  == 'fortnite_battle_royal_solo_xboxX' %}
+
+<!-- ////////////////////////////////////// FIFA DUO ////////////////////////////////// -->
+									{% for i in fortnite_solo.items %} 
+																															
+										<div class="player_tag">
+										<div class="player_tag_img">
+																	
+										</div>
+										<div class="segment_titles_player_tag">{{i.Gamertag_PC|upper}}</div>
+
+										</div>
+														
+									{% endfor %}
+
+
+						{% endif %} 
+
+
+
+
+
+							
+
+
+<!-- ///////////////////////////   //////////////////////////////// -->
+
+					</div>
+
+<!-- //////////////////////////////////////////// RULES  ////////////////////////////////////////////////////// -->
+					<div class="RULES" id="RULES">
+						<div class="segment_titles_1_center">RULES</div>
+						<hr>
+
+					</div>
+
+<!-- //////////////////////////////////////////// PRIZES  ////////////////////////////////////////////////////// -->
+					<div class="PRIZES" id="PRIZES">
+						<div class="segment_titles_1_center">PRIZES</div>
+						<hr>
+
+					</div>
+
+</div>
+
+				</div>
+
+
+				<div class="item_info_all_tournamnet_pass">
+					<div class="info_top_bar">
+						<h4 class="segment_titles_info_title">GET YOUR TOURNAMENT PASS HERE !</h4>
+					</div>
+
+					<div class="itm_section">
+
+					</div>
+
+					<div class="itm_section_info_overlay">
+						<div class="tournament_pass_g_logo">
+							<img src="{{url_for('static', filename='images/'+product.image_2 )}}" alt="{{product.name}}" class="itm_img">
+						</div>
+
+
+							<form action="{{url_for('AddCart')}}" method="POST">
+								<input type="hidden" name="product_id" value="{{product.id}}">
+							
+								<input type="hidden" name="quantity" value="1" min="1" max="{{product.stock}}">
+								
+								<input type="hidden" name="T_Title" value="{{product.T_Title}}">
+
+									<div class="tournament_pass">
+										<button type="submit" class="btn_submit">
+											<img  src="{{url_for('static', filename='tournament_pass/SQUADS_BATTLE_ROYAL.png')}}"  class="itm_img_tour_pass">
+										</button>
+									</div>
+
+
+
+							</form>
+
+
+														
+							{#<!-- <div class=""> 
+								<a href="{{url_for('getCart')}}" class="checkout_btn"> COMPLETE ORDER </a> 
+							</div> -->#}
+
+							
+					</div>
+
+				</div>
+
+	</div> 
+
+	
+
+</div>
+<!-- ///////////////////////////////// -->
+
+
+
+
+
+</div>
+
+
+
+
+
+<div id="footer" class="footer">
+  <div class="footer_cont">
+
+      <div class="footer_div">
+        <div class="footer_title">WANT MORE ?</div>
+        <div class="footer_link">Size Guide</div>
+        <div class="footer_link">Delivery and Returns</div>
+        <div class="footer_link">About Us</div>
+        <div class="footer_link">Privacy policy</div>
+        <div class="footer_link">Terms od Service</div>
+
+        <div class="footer_link">2020 Shapit UK</div>
+      </div>
+
+      <div class="footer_div">
+        <div class="footer_title">WHY USE A WAIST TRAINER ?</div>
+        <div class="footer_link">How To Use a Waist Trainer</div>
+        <div class="footer_link">Garment Care</div>
+        <div class="footer_link">Size Guide</div>
+        <div class="footer_link">Beginners Guide to Waist Training</div>
+
+      </div>
+
+      <div class="footer_div">
+        <div class="footer_title">SHAPE IT UK</div>
+        <div class="footer_link">Adress line</div>
+        <div class="footer_link">Adress line</div>
+        <div class="footer_link">Adress line</div>
+        <div class="footer_link">Adress line</div>
+      </div>
+
+      <div class="footer_div">
+        <div class="footer_title">SOCIAL MEDIA LINKS</div>
+        <div class="footer_link">Facebook</div>
+        <div class="footer_link">instagram</div>
+        <div class="footer_link">Twitter</div>
+        <div class="footer_link">Snapchat</div>
+      </div>
+    </div>
+
+    <!-- payment methods  -->
+
+
+  </div>
+ 
+  <div class="payment_system">
+    
+    <div class="footer_div_payment">
+        <div class="footer_title2">PAYMENT METHODS</div>
+        <div class="footer_icon">      <img src="{{url_for('static', filename='icons/icons8-paypal-480.png' )}}" alt="{{product.name}}" class="itm_img"></div>
+        <div class="footer_icon">      <img src="{{url_for('static', filename='icons/icons8-mastercard-480.png' )}}" alt="{{product.name}}" class="itm_img"></div>
+        <div class="footer_icon">      <img src="{{url_for('static', filename='icons/icons8-visa-480.png' )}}" alt="{{product.name}}" class="itm_img"></div>
+        <div class="footer_icon">      <img src="{{url_for('static', filename='icons/icons8-american-express-480.png' )}}" alt="{{product.name}}" class="itm_img"></div>
+    </div>
+
+</div>
+
+</div>
+
+
+						
+						<div id="shop_cont" >
+
+							<div id="shop_top"></div>
+
+
+							<div id="shop_menu_bar">
+
+							</div>
+
+							
+
+					</div>
+
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+</div>
+
+<div class="" >{% include 'footer.html' %}</div>
+
+
+
+
+
+<script src="post_grid.js" type="text/javascript"></script>
+<script src="paralax.js"></script>
+
+<script type="text/javascript">
+	////////////////ON BUTTON CLICK, CHANGE//////...
+
+
+////////////////////////SIGN UP FORM///////////////////////////
+var sign_up_form_cont = document.getElementById("sign_up_form_cont");
+var sign_up_form = document.getElementById("sign_up_form");
+var sign_up_btn = document.getElementById("sign_up_btn");
+
+		sign_up_btn.onclick = function(){
+
+			if(sign_up_form.className== "open"){
+			sign_up_form.className = "";
+			sign_up_form_cont.className = ""
+
+			}else{
+			sign_up_form.className = "open"
+			sign_up_form_cont.className = "open";
+			}
+
+			};
+
+/////////////////////////////////////////////////////////////
+var sign_up_form_cont = document.getElementById("sign_up_form_cont");
+</script>
+
+
+<script type="text/javascript">
+
+////////////////ON BUTTON CLICK, OPEN ITEM VIEWER //////...
+	var itm_content = document.getElementById("more_info");
+	var itm_button = document.getElementById("sdfdfd");
+	
+	
+				itm_button.onclick = function(){
+				if(itm_content.className== "iopen"){
+				itm_content.className = "" ;
+	
+				}else{
+					itm_content.className = "iopen";
+				}
+	
+				};
+</script>
+
+<script type="text/javascript">
+
+	////////////////ON BUTTON CLICK, OPEN ITEM VIEWER //////...
+	var itm_v_content = document.getElementById("more_info");
+	var itm_v_button = document.getElementById("item_view_cont");
+	var view_v_blr = document.getElementById("shop_main_cont");	
+
+	
+				itm_v_button.onclick = function(){
+				if(itm_v_content.className== "iopen"){
+				itm_v_content.className = "" ;
+				view_v_blr.className = "";
+	
+				}else{
+					itm_v_content.className = "";
+					view_v_blr.className = "";
+
+				}
+	
+				};
+</script>
+
+<script type="text/javascript">
+
+	////////////////  RULES OPEN  //////...
+
+	var RULES_BTN = document.getElementById("RULES_BTN");
+
+	var FIXTURES_R = document.getElementById("FIXTURES");
+	var OVERVIEW_R = document.getElementById("tournament_overview_cont");
+	var RULES_R = document.getElementById("RULES");
+	var PRIZES_P = document.getElementById("PRIZES");
+	
+
+
+
+	
+				RULES_BTN.onclick = function(){
+				if(RULES_R.className== "open"){
+				FIXTURES_R.className = "" ;
+				OVERVIEW_R.className = "closed";
+				RULES_R.className = "open";
+				PRIZES_P.className = "";
+
+				}else{
+					FIXTURES_R.className = "";
+					OVERVIEW_R.className = "closed" ;
+					RULES_R.className = "open";
+					PRIZES_P.className = "";
+
+				}
+	
+				};
+</script>
+
+<script type="text/javascript">
+
+	////////////////  PRIZES OPEN  //////...
+
+	var PRIZES_BTN = document.getElementById("PRIZES_BTN");
+
+	var FIXTURES_P = document.getElementById("FIXTURES");
+	var OVERVIEW_P = document.getElementById("tournament_overview_cont");
+	var RULES_P = document.getElementById("RULES");
+	var PRIZES_P = document.getElementById("PRIZES");
+
+	
+				PRIZES_BTN.onclick = function(){
+				if(RULES_P.className== "open"){
+				FIXTURES_P.className = "" ;
+				OVERVIEW_P.className = "closed";
+				RULES_P.className = "";
+				PRIZES_P.className = "open";
+				}else{
+					FIXTURES_P.className = "";
+					OVERVIEW_P.className = "closed" ;
+					RULES_P.className = "";
+					PRIZES_P.className = "open";
+				}
+	
+				};
+</script>
+
+
+
+<script type="text/javascript">
+
+	////////////////  ENROLED OPEN  //////...
+
+	var OVERVIEW_BTN = document.getElementById("OVERVIEW_BTN");
+
+	var FIXTURES_o = document.getElementById("FIXTURES");
+	var OVERVIEW_o = document.getElementById("tournament_overview_cont");
+	var RULES_o = document.getElementById("RULES");
+	var PRIZES_P = document.getElementById("PRIZES");
+
+
+
+	
+				OVERVIEW_BTN.onclick = function(){
+				if(FIXTURES_o.className== "open"){
+				FIXTURES_o.className = "" ;
+				OVERVIEW_o.className = "";
+				PRIZES_P.className = "";
+				}else{
+					FIXTURES_o.className = "";
+					OVERVIEW_o.className = "" ;
+					PRIZES_P.className = "";
+				}
+	
+				};
+</script>
+
+
+
+<script type="text/javascript">
+
+	//////////////// OVERVIEW OPEN //////...
+
+	var FIXTURES_BTN = document.getElementById("FIXTURES_BTN");
+
+	var FIXTURES = document.getElementById("FIXTURES");
+	var OVERVIEW = document.getElementById("tournament_overview_cont");
+	var RULES = document.getElementById("RULES");
+	var PRIZES_P = document.getElementById("PRIZES");
+
+
+
+	
+				FIXTURES_BTN.onclick = function(){
+				if(FIXTURES.className== "open"){
+				FIXTURES.className = "open" ;
+				OVERVIEW.className = "closed";
+				RULES.className = "";
+				PRIZES_P.className = "";
+				}else{
+					FIXTURES.className = "open";
+					OVERVIEW.className = "closed" ;
+					RULES.className = "";
+					PRIZES_P.className = "";
+				}
+	
+				};
+</script>
+
+
+
+
+<script>
+	document.querySelectorAll('.quicklook_cont').forEach(item => { 
+  	item.addEventListener('click', event => {
+    //handle click
+
+	// OPEN ITEM VIEWER ON CLICK //
+
+	var itm_view_cont = document.getElementById("item_view_cont");	
+	var itm_content = document.getElementById("more_info");	
+	var view_blr = document.getElementById("shop_main_cont");
+	
+	
+				if(itm_content.className== "iopen"){
+				itm_content.className = "" ;
+				view_blr.className = "" ;
+				itm_view_cont.className = "" ;
+				}else{
+					itm_content.className = "iopen";
+					view_blr.className = "open";
+					itm_view_cont.className = "open" ;	
+
+				};
+ 		 })
+	})
+
+</script>
+
+<script>
+	var x = document.getElementsByClassName("item");
+	x[0].submit(); // Form submission
+</script>
+
+<script>
+   var b_image = document.getElementById('b_image');
+   var s_image = document.getElementById('s_image').getElementsByTagName('img');
+    for(var i = 0; i < s_image.length; i++){
+
+        s_image[i].addEventListener('click', full_image);
+    }
+    function full_image(){
+        var ImageSRC = this.getAttribute('src');
+        b_image.innerHTML = "<img src=" + ImageSRC + " width='400' height='400'>";
+    }
+</script>
+           
+
+
+
+<!---============== END OF NAV BAR ==================-->
+{#<br><br>
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-6" id="b_image">
+            <img src="{{url_for('static',filename='images/' + product.image_1)}}" alt="{{product.name}}" width="400" height="400">
+        </div>
+        <div class="col-md-6">
+            <h4>Product name: {{product.name}} </h4>
+            <hr>
+            <p>Product price: £{{product.price}}</p>
+            <hr>
+            {% if product.discount > 0 %}
+            <p>Discount: {{product.discount}} % </p>
+            {% endif %}
+            <hr>
+            <b>Product discription</b>
+            <p>{{product.desc}}</p>
+            <form action="{{url_for('AddCart')}}" method="post">
+                <input type="hidden" name="product_id" value="{{product.id}}">
+                <button type="submit" class="btn btn-sm btn-warning">Add to Cart</button>
+                <label for="quantity">Quantity: </label>
+                <input type="number" name="quantity" value="1" min="1" max="{{product.stock}}">
+                {% set colors = product.colors.split(',') %}
+                <label for="colors">Colors: </label>
+                <select name="colors" id="colors">
+                    {% for color in colors %}
+                    {% set col = color.split(':') %}
+                    <option value="{{col[0]}}">{{col[0] | capitalize }}</option>
+                    {% endfor %}
+                </select>
+            </form>
+        
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col-md-12" id="s_image">
+            <img src="{{url_for('static',filename='images/'+ product.image_1)}}" alt="{{product.name}}" width="100" height="100">
+            <img src="{{url_for('static',filename='images/'+ product.image_2)}}" alt="{{product.name}}" width="100" height="100" class="ml-5">
+            <img src="{{url_for('static',filename='images/'+ product.image_3)}}" alt="{{product.name}}" width="100" height="100" class="ml-5">
+        </div>
+    </div>
+   
+</div>
+
+<script>
+   var b_image = document.getElementById('b_image');
+   var s_image = document.getElementById('s_image').getElementsByTagName('img');
+    for(var i = 0; i < s_image.length; i++){
+
+        s_image[i].addEventListener('click', full_image);
+    }
+    function full_image(){
+        var ImageSRC = this.getAttribute('src');
+        b_image.innerHTML = "<img src=" + ImageSRC + " width='400' height='400'>";
+    }
+</script>#}
+{% endblock content %}

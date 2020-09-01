@@ -1,0 +1,136 @@
+{% extends "layout_store_open.html" %}
+{% block content %}
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<div id="shop_main_cont">
+
+
+<!-- /////////////// OUR TOURNAMENTS, CLICK TO VIEW ALL TOURNAMENTS ///////////////////// -->
+
+<div id="landing_section_3" class="landing_section_3">
+
+	<div id="match_making_bg">
+		<div class="games_and_opps">
+			<div class="games">
+
+			</div>
+			<div class="opps">
+
+				</div> 
+
+		</div>
+		<div class="chat_with_opps">
+
+		</div>
+		<div class="agree_with_opp">
+
+			{% for i in customer_order %} 
+			<!-- HAS THE CUSTOMER PAID ? -->
+				{% if i.customer_id == current_user.id and i.status == 'Paid' %}
+					<!-- FOR EVERY PLAYER IN THE TOURNAMENT -->
+					{% for p in fortnite_solo %} 
+						<!-- SELECT A PLAYER THAT HAS THE SAME I.D AS THE CURRENT USER  -->
+							{% if p.Participant_User_Id|int == current_user.id  %}
+								{% if p.opponent == 'NULL'  %}
+									<div class="opp_comms_title">YOUR game key is  = {{p.game_key}}</div> 
+									<div class="opp_comms_title">YOUR gamertag = {{current_user.id}}</div> 
+									<div class="opp_comms_title">YOU CURRENTLY HAVE NO OPPONENT , WAITING FOR YOUR OPPONENT ...</div> 
+ 								{% else %}		
+									<div class="opp_coms_cont">
+										<div class="opp_comms_title">YOUR game key is  = {{p.game_key}}</div> 
+										<div class="opp_comms_title">YOUR gamertag = {{current_user.id}}</div> 
+										<div class="opp_comms_title">YOUR opponent  = {{p.opponent}}</div> 
+									</div>
+								{% endif %}	
+
+
+								<!--AGREE ON THE TIME FOR MATCH -->
+								
+								<div class="opp_coms_cont">
+									{% if p.opponent == 'NULL'  %}
+									
+									{% else %}	
+										{% if p.player1_time == p.player1_time  %}
+											<div class="opp_comms_title">YOUR AGREED TIME IS</div> 
+											<div class="opp_comms_title">{{p.player1_time}}</div> 
+										{% else %}		
+											<div class="opp_comms_title">PLEASE AGREE ON A TIME YOU ARE BOTH FREE TO PLAY</div> 
+										{% endif %}		
+											<div class="opp_comms_title">YOUR time  = {{p.player1_time}}</div> 
+											<div class="opp_comms_title">YOUR opponent has suggetsted  = {{p.player2_time}}</div> 
+									{% endif %}		
+
+								</div>
+
+								<!-- PLEASE UPLOAD EVIDENCE OF YOU WINNING THE MATCH IN THE FOM OF A YOUR A VIDEO FILE  -->
+
+								<div class="opp_coms_cont">
+									{#<!-- {% if p.player1_video == 'NULL'  %} -->#}
+										<div class="opp_comms_title">TO CLAIM YOUR PRIZE PLEASE UPLOAD EVIDENCE OF YOUR MATCH IN THE FORM OF A VIDEO FILE</div> 
+										<form method=post enctype=multipart/form-data>
+										<input type="hidden" name="game_key" value={{p.game_key}}>
+										<input type=file name=file>
+										<input type=submit value=Upload>
+										</form>
+									{#<!-- {% else %}-->#}
+										<div class="opp_comms_title">YOU HAVE ALREADY UPLOADED YOUR VIDEO FILE</div> 
+									{# <!-- {% endif %}--> #}
+
+								</div>
+
+								<!-- PLEASE UPLOAD EVIDENCE OF YOU WINNING THE MATCH IN THE FOM OF A YOUR A VIDEO FILE  -->
+
+								<div class="opp_coms_cont">
+									<div class="opp_comms_title">TO SETTLE A DISPUTE OR REPORT CHEETING, PLEASE CONACT OUR COMMUNNITY MANAGERS HERE</div> 
+								</div>
+								
+
+							{% endif %}		
+						{% endfor %}					
+				{% endif %}			
+			{% endfor %}
+
+
+		
+		</div>
+
+		<!-- <div class="my_info_prof_pic"></div> 
+		<div class="segment_titles_2">PLEASE LOG IN</div> -->
+	</div>
+
+<!--	<div class="player_stats">
+		 <div class="stats_cont">
+			<div class="segment_titles_info_title"> RANK </div>
+			<div class="segment_titles_info_title"> TOTAL EARNINGS </div>
+			<div class="segment_titles_info_title"> TOURNAMENTS ENTERED </div>
+			<div class="segment_titles_info_title"> GAMES </div>
+			<div class="segment_titles_info_title"> TEAM MEMBERS </div>
+			<div class="segment_titles_info_title"> ACTIVE TOURNAMENTS </div>
+		</div>
+	</div> -->
+	
+  <div class="our_games_cont_HEX">
+	  
+
+
+
+
+
+
+
+
+  </div>
+
+  
+</div>
+
+
+
+
+
+{% endblock content %}
+
+
+

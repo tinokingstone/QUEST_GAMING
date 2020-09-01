@@ -1,0 +1,34 @@
+- hosts: Docker
+  become: yes
+  roles:
+  - Docker
+
+- hosts: Docker_ci
+  become: yes
+  roles:
+  - Docker
+  
+- hosts: Load_Balancer
+  become: yes
+  roles:
+  - Load_Balancer
+
+- hosts: Ci_Server
+  become: yes
+  roles:
+  - Ci_Server
+
+- hosts: Database
+  become: yes
+  roles:
+  - Database
+
+- hosts: Kubernetes
+  become: yes
+  roles:
+  - Kubernetes
+
+- hosts: Azure-cli
+  become: yes
+  roles:
+  - Azure-cli

@@ -1,0 +1,32 @@
+version: '3.2'
+services:
+  front:
+    image: stef260695/front:latest
+    depends_on:
+      - api
+    ports:
+      - 4200:4200
+    networks:
+      - spring-petclinic
+  api:
+    image: stef260695/api:latest
+    ports:
+      - 9966:9966
+    networks:
+      - spring-petclinic
+  petclinic_db:
+    image: harman191/springinitdb:v1
+    restart: always 
+    environment:
+    - DATASOURCE_SCHEMA="~/spring-petclinic-rest/src/main/resources/db/mysql/initDB.sql"
+    - DATASOURCE_DATA="~/spring-petclinic-rest/src/main/resources/db/mysql/populateDB.sql"
+    - INITIALIZE_DB="true"
+    - MYSQL_ROOT_PASSWORD=petclinic
+    - MYSQL_ALLOW_EMPTY_PASSWORD=true
+    - MYSQL_USER=petclinic
+    - MYSQL_PASSWORD=petclinic
+    - MYSQL_DATABASE=petclinic
+    ports:
+      - 3306:3306
+networks:
+    spring-petclinic:

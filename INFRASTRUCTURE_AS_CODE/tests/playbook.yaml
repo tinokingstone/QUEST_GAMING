@@ -1,0 +1,4 @@
+- hosts: Ci_Server
+  become: yes
+  roles:
+  - Ci_Server

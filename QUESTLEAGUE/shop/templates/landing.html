@@ -1,0 +1,138 @@
+{% extends "layout_store_open.html" %}
+{% block content %}
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<div id="shop_main_cont">
+
+
+<!-- /////////////// OUR TOURNAMENTS, CLICK TO VIEW ALL TOURNAMENTS ////////////////// -->
+
+<div id="landing_section_65" class="landing_section_65">
+
+	<div id="my_info_cont_prof">
+		<div class="my_info_prof_pic"></div> 
+		<div class="segment_titles_2">LIVE TOURNAMENTS</div>
+  </div>
+  <div class="seasons_tab">
+		<div class="stats_cont">
+			<div class="segment_titles_info_title"> SEASON 1 </div>
+			<div class="segment_titles_info_title"> SEASON 2 </div>
+		</div>
+	</div>
+  
+
+<div class="hex_cont">
+  <div class="our_games_cont_HEX">
+
+      <div class="margin_top">
+
+					   <!--================= SHOWING ALL PRODUCTS .... FOR LOOP ================-->
+            
+           {% for product in products.items %}
+            {#{% if product.discount > 0 %}#}
+
+            <a href="{{url_for('single_page', id=product.id)}}">
+              <div class="HEX_dual_split">
+                
+                <a class="link " href="{{url_for('single_page', id=product.id)}}">
+
+                  <img  src="{{url_for('static', filename='images/'+product.image_1 )}}" alt="{{product.name}}" class="itm_img">
+
+                  <div class="descrip_cont">
+
+
+                      <div class="g_logo">
+                        <img src="{{url_for('static', filename='images/'+product.image_2 )}}" alt="{{product.name}}" class="itm_img"> 
+                      </div>
+
+                      <div class="card_descrip">
+
+                        <div class="prize_pot_cont">
+              {#             <div class="segment_titles_1_center_prize_2">
+                            {{product.Game_Mode}}
+                            {{product.Tournament_Type}}
+                            {{product.Prize_Pot|round}}
+                          </div>
+
+
+                          {% if product.Platform=="Cross Platform" %}
+                          xb ps pc | {{product.Platform}}
+                          {% else %}
+                          <div class="">{{product.Platform}}</div>
+                          {% endif %}
+                          <div>{{ (product.Maximum_Participants|round) / 100 * (product.Enroled_Participants|round) }}% filled</div>
+                    
+
+             <img src="{{url_for('static', filename='images/'+product.image_3 )}}" alt="{{product.name}}" class="itm_img_tour"> 
+              
+                        #}
+            
+            
+            </div>
+              
+                        <!-- 
+                        <div class="segment_titles_cross_con">
+                          {{product.gamename}}
+                          {{product.Game_Mode}}
+                          {{product.Starting_Date}}
+                          {{product.Tournament_Time}}
+                          {{product.Region}}
+                          {% if product.Platform=="Cross Platform" %}
+                          xb ps pc | {{product.Platform}}
+                          {% else %}
+                          <div class="">{{product.Platform}}</div>
+                          {% endif %}
+                          <div>{{ (product.Maximum_Participants|round) / 100 * (product.Enroled_Participants|round) }}% filled</div>
+                        </div> -->
+                      
+                      </div>
+
+                      <div class="descrip_cont_bg">
+                        
+                      </div>
+                  </div>
+
+              </div>
+              <div class="HEX_dual_split_info_overlay">
+
+                <div class="date_cont">
+                  <div class="segment_titles_1_btm_right_prize">
+                    {{product.Starting_Date}}
+                  </div> 
+                </div>          
+
+
+                <div class="price_cont">
+                  <div class="entery_price_hex">
+                    £{{product.price|round }} ENTERY
+                  </div> 
+                </div>                
+              </div>
+
+            </a>
+      
+							{#{% else %}
+							
+							{% endif %}#}
+
+							{% endfor %}
+
+      </div>
+
+  </div>
+
+</div>  
+
+
+
+</div>
+
+<div class="" >{% include 'footer.html' %}</div>
+
+
+{% endblock content %}
+
+
+

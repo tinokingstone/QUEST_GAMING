@@ -1,0 +1,95 @@
+Arguments: 
+  /usr/bin/node /usr/share/yarn/bin/yarn.js run test
+
+PATH: 
+  /home/stef/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/home/stef/bin
+
+Yarn version: 
+  1.22.4
+
+Node version: 
+  12.16.2
+
+Platform: 
+  linux x64
+
+Trace: 
+  SyntaxError: /home/stef/QAProject3/petclinic/spring-petclinic-angular/package.json: Unexpected token { in JSON at position 1588
+      at JSON.parse (<anonymous>)
+      at /usr/share/yarn/lib/cli.js:1625:59
+      at Generator.next (<anonymous>)
+      at step (/usr/share/yarn/lib/cli.js:310:30)
+      at /usr/share/yarn/lib/cli.js:321:13
+
+npm manifest: 
+  {
+    "name": "spring-petclinic-angular",
+    "version": "9.1.2",
+    "license": "MIT",
+    "scripts": {
+      "ng": "ng",
+      "start": "ng serve",
+      "build": "ng build",
+      "test": "ng test",
+      "lint": "ng lint",
+      "e2e": "ng e2e"
+    },
+    "private": true,
+    "dependencies": {
+      "@angular/animations": "9.1.2",
+      "@angular/cdk": "8.0.1",
+      "@angular/common": "9.1.2",
+      "@angular/compiler": "9.1.2",
+      "@angular/core": "9.1.2",
+      "@angular/forms": "9.1.2",
+      "@angular/material": "8.0.1",
+      "@angular/material-moment-adapter": "8.0.1",
+      "@angular/platform-browser": "9.1.2",
+      "@angular/platform-browser-dynamic": "9.1.2",
+      "@angular/router": "9.1.2",
+      "bootstrap": "^3.3.7",
+      "core-js": "^2.5.5",
+      "jquery": "^3.3.1",
+      "moment": "^2.22.1",
+      "rxjs": "^6.3.1",
+      "tether": "^1.4.4",
+      "zone.js": "^0.10.3"
+    },
+    "devDependencies": {
+      "@angular-devkit/build-angular": "^0.901.2",
+      "@angular/cli": "^9.1.2",
+      "@angular/compiler-cli": "9.1.2",
+      "@angular/language-service": "9.1.2",
+      "@types/jasmine": "~2.8.3",
+      "@types/jasminewd2": "~2.0.2",
+      "@types/node": "^6.0.106",
+      "codelyzer": "^5.0.0",
+      "jasmine-core": "~2.8.0",
+      "jasmine-spec-reporter": "~4.2.1",
+      "karma": "~2.0.0",
+      "karma-chrome-launcher": "~2.2.0",
+      "karma-cli": "~1.0.1",
+      "karma-coverage-istanbul-reporter": "^1.4.2",
+      "karma-jasmine": "^1.1.1",
+      "karma-jasmine-html-reporter": "^0.2.2",
+      "protractor": "~5.1.2",
+      "source-map-explorer": "^1.5.0",
+      "ts-node": "~4.1.0",
+      "tslint": "~5.15.0",
+      "typescript": "3.8.3"
+    }
+  }
+  
+  {
+    "name": "my-package",
+    "scripts": {
+      "build": "babel src -d lib",
+      "test": "jest"
+    }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile

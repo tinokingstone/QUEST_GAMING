@@ -1,0 +1,26 @@
+  - name: docker service
+    service:
+      name: docker
+      state: started
+  - name: insecure registry create Dir
+    file:
+      path: /etc/docker/
+      state: directory
+      mode: "0700"
+
+  - name: launch db container
+    docker_container:
+      name: db
+      env:
+        MYSQL_ROOT_PASSWORD: "petclinic"
+ 
+      image: harman191/springinitdb:v1
+      ports:
+       - "3306:3306"
+       - "127.0.0.1:8080:8080/udp" 
+         #detach: no
+      volumes:
+        - petclinicdb:/data
+          #become: yes  
+
+    #/home/jenkins/.shh/id_rsa.pub

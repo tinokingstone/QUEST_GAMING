@@ -1,0 +1,126 @@
+{% extends "layout_store_open.html" %}
+{% block content %}
+{% from "_formhelpers.html" import render_field %}
+
+<!-- //////////////////////////////////////////////////////////////// -->
+
+
+
+<head>
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='quick_sign.css') }}">
+</head>
+
+
+			<div id="sign_up_form_cont">
+							<div id="sign_up_form">
+								<div id="sign_up_form_header">
+								<div id="signup_header_txt">SIGN-UP HERE</div>
+							    <div id="signup_p_icon"></div>
+							</div>					
+					
+                            {% from "_formhelpers.html" import render_field %}
+							{% include '_messages.html' %}
+							
+                            <form method=post>
+                                {{formg.csrf_token}}
+
+								<div id="signup_form_img_upload_cont">
+												<div id="signup_form_prof_pic"> 
+	    												<div class="upldImg">  <img id="blah" src="#" alt=""  class="signup_form_prof_pic" />     </div> 
+														<div class="imgBtn">  <input  type='file' name="file" onchange="readURL(this);"  class="sign_up_btn_cont" />  </div> 
+												 </div>
+								</div>
+
+							
+								<div class="field_test2">{{ render_field(formg.gtag_activision, placeholder="Please enter your activation gamertag")}}</div>
+	
+										<div id="agreements_cont">
+											<div class="agreements">By clicking on Sign up, you agree to Plug's  <a class="hyperlink" href="url">Terms and Conditions of Use</a>.  </div>
+											<div class="agreements">To learn more about how Quest-Gaming, uses, protects your personal data please read our <a class="hyperlink2" href="url">Privacy Policy</a>.</div>
+										</div>
+
+
+							<div class="sign_up_btn_cont">{{ formg.submit(id="sign_up_btn") }}</div>
+
+
+										<div id="already_have_account"> Already have an account?  <a class="hyperlink2" href="url"> Sign up </a> </div>
+
+
+						    </form>
+	 		</div>
+
+
+			 </div>
+
+
+	<script type="text/javascript">
+		////////////////ON BUTTON CLICK, CHANGE//////...
+	var content = document.getElementById("log_in_form_container");
+	var button = document.getElementById("profile_icon");
+
+				button.onclick = function(){
+
+				if(content.className== "open"){
+				content.className = "" ;
+				}else{
+				content.className = "open";
+				}
+
+				};
+
+	////////////////////////SIGN UP FORM///////////////////////////
+	var sign_up_form_cont = document.getElementById("sign_up_form_cont");
+	var sign_up_form = document.getElementById("sign_up_form");
+	var sign_up_btn = document.getElementById("sign_up_btn");
+
+			sign_up_btn.onclick = function(){
+
+				if(sign_up_form.className== "open"){
+				sign_up_form.className = "";
+				sign_up_form_cont.className = ""
+
+				}else{
+				sign_up_form.className = "open"
+				sign_up_form_cont.className = "open";
+				}
+
+				};
+
+	/////////////////////////////////////////////////////////////
+	var sign_up_form_cont = document.getElementById("sign_up_form_cont");
+	///////////////////////////////////////////////////////////////////
+
+
+	 function readURL(input) {
+	            if (input.files && input.files[0]) {
+	                var reader = new FileReader();
+
+	                reader.onload = function (e) {
+	                    $('#blah')
+	                        .attr('src', e.target.result)
+	                       
+	                };
+
+	                reader.readAsDataURL(input.files[0]);
+	            }
+	        }
+
+
+	</script>
+
+
+
+
+
+
+
+
+
+
+<div class="reg_bg">
+
+</div>
+
+
+
+{% endblock content %}
